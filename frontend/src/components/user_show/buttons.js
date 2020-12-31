@@ -23,7 +23,10 @@ class Buttons extends React.Component {
 
   render() {
 
-    console.log(this.props)
+
+    // console.log(this.props.user.following)
+    // console.log(this.props)
+    // debugger
 
     if(this.props.params.username === this.props.user.username){
       return (
@@ -31,21 +34,26 @@ class Buttons extends React.Component {
           <div id="button-text">Add Event</div>
         </button>
       );
-    } else {
-          return (
-            <div id="button-container">
-              <button id="edit-button">
-                <div onClick={() => this.handleFollow()} id="button-text">
-                  Follow
-                </div>
-              </button>
-              <button id="edit-button">
-                <div onClick={() => this.handleUnfollow()} id="button-text">
-                  Unfollow
-                </div>
-              </button>
+    } else if (this.props.params.username.includes(this.props.params.username)) {
+      return (
+        <div id="button-container">
+          <button id="edit-button">
+            <div onClick={() => this.handleUnfollow()} id="button-text">
+              Unfollow
             </div>
-          );
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div id="button-container">
+          <button id="edit-button">
+            <div onClick={() => this.handleFollow()} id="button-text">
+              Follow
+            </div>
+          </button>
+        </div>
+      );
     }
 
   }

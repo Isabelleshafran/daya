@@ -17,17 +17,19 @@ class UserShow extends React.Component {
 
   componentDidMount(){
     this.props.fetchEvents()
+    this.props.fetchUsers()
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props.users)
+    
     return (
       <div id="calendar">
         <div id="show-edit">
           <h1 id="nav-header">Calendar</h1>
           <Buttons user={this.props.user} params={this.props.match.params} 
           follow={this.props.follow} unfollow={this.props.unfollow} 
-          history={this.props.history}/>
+          history={this.props.history} users={this.props.users}/>
         </div>
         <div id="cal-container">
           <div className="column">
