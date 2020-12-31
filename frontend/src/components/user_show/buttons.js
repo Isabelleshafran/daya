@@ -1,4 +1,5 @@
 import React from 'react';
+import UserShow from './user_show';
 
 
 class Buttons extends React.Component {
@@ -22,39 +23,53 @@ class Buttons extends React.Component {
   }
 
   render() {
+    const {username} = this.props.params.username
 
+   const Buttons = () => {
+      let id = "";
 
-    // console.log(this.props.user.following)
-    // console.log(this.props)
-    // debugger
+      if(this.props.user.username === username){
+        return (
+          <button onClick={() => this.handleCreate()} id="edit-button">
+            <div id="button-text">Add Event</div>
+          </button>
+        );
+      }
 
-    if(this.props.params.username === this.props.user.username){
-      return (
-        <button onClick={() => this.handleCreate()} id="edit-button">
-          <div id="button-text">Add Event</div>
-        </button>
-      );
-    } else if (this.props.params.username.includes(this.props.params.username)) {
-      return (
-        <div id="button-container">
-          <button id="edit-button">
-            <div onClick={() => this.handleUnfollow()} id="button-text">
+      this.props.users.forEach(user => {
+        // debugger
+        if (user.username === this.props.params.username) {
+          id = user.id;
+        }
+      })
+
+      if(this.props.user.following.includes(id)){
+        return (
+         <div id="button-container">
+           <button id="edit-button">
+             <div onClick={() => this.handleUnfollow()} id="button-text">
               Unfollow
-            </div>
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div id="button-container">
-          <button id="edit-button">
-            <div onClick={() => this.handleFollow()} id="button-text">
-              Follow
-            </div>
-          </button>
-        </div>
-      );
+             </div>
+           </button>
+         </div>
+        )
+      } else {
+        return (
+          <div id="button-container">
+            <button id="edit-button">
+              <div onClick={() => this.handleFollow()} id="button-text">
+                  Follow
+              </div>
+            </button>
+          </div>
+        );
+      }
+
     }
+
+    return (
+      Buttons()
+    )
 
   }
 }

@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
      return {
        user: state.session.user,
        events: state.events,
-       followers: state.session.user.following,
+      //  followers: state.session.user.following,
        users: Object.values(state.users)
      };
 }
