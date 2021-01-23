@@ -2,8 +2,7 @@ import React from "react";
 import EventIndexItem from '../events/event_index_item'
 import SuggestedFollows from "../suggested_follows/suggested_follows_container";
 import FollowersIndex from "../followers/followers_container";
-// import Follow from './follow';
-import './newsfeed.scss';
+import "../../stylesheets/application.scss";
 
 
 class Newsfeed extends React.Component {
@@ -45,7 +44,8 @@ class Newsfeed extends React.Component {
                   <h2 id="header2">Upcoming Events </h2>
 
                 {events.map((event) => {
-                  if (currentUser.following.includes(event.user_id)) {
+                    const date = new Date().toISOString()
+                  if (currentUser.following.includes(event.user_id) && event.date > date) {
                     return <EventIndexItem key={event._id} event={event} currentUser={this.props.currentUser} />;
                   }
                   return null;
